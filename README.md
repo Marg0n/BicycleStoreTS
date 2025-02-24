@@ -82,7 +82,7 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
 
 <br/>
 
-## **Recommendation Functionalities (Optional)**
+## **Extra Functionalities**
 
 ### **User Side**
 - **Bicycle Comparison Tool**: Compare up to 3 bicycles side-by-side. Display specifications, pricing, and features to help users make informed decisions.
@@ -124,17 +124,12 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm install antd
   ```
 
-- Install [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- Install [Redux Toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
   
   ```bash
-  npm install @reduxjs/toolkit
+  npm install @reduxjs/toolkit react-redux
   ```
 
-  If you need React bindings:
-
-  ```bash
-  npm install react-redux
-  ```
 
 <br>
 <br>
