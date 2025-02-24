@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Flex } from "antd";
-import { useLoginMutation } from "../redux/features/auth/authApi";
+import { Button, Form, Input } from "antd";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { useLoginMutation } from "../redux/features/auth/authApi";
 
 const Login = () => {
   const [login, { data, error, isLoading }] = useLoginMutation();
@@ -68,7 +68,11 @@ const Login = () => {
           {/* login button */}
           <Form.Item>
             <Button block type="primary" htmlType="submit" disabled={isLoading}>
-              {isLoading ? <TbFidgetSpinner className="animate-spin" /> : "Log in"}
+              {isLoading ? (
+                <TbFidgetSpinner className="animate-spin" />
+              ) : (
+                "Log in"
+              )}
             </Button>
             <p className="text-center mt-2">
               Don&apos;t have an account? <a href="">Register now!</a>
