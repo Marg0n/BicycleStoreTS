@@ -2,6 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://bicycle-store-ts-node.vercel.app/api" }),
   endpoints: () => ({  }),
 });

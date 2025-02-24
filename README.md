@@ -146,6 +146,12 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm install @reduxjs/toolkit react-redux
   ```
 
+- Install [react-icon](https://react-icons.github.io/react-icons/)
+
+  ```bash
+  npm install react-icons
+  ```
+
 - Install [TailwindCss](https://tailwindcss.com/docs/installation/using-vite)
 
   Install tailwindcss and @tailwindcss/vite via npm.
