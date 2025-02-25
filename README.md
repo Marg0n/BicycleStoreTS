@@ -158,6 +158,12 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm i jwt-decode
   ```
 
+- Install [redux-persist](https://www.npmjs.com/package/redux-persist) 
+
+  ```bash
+  npm i redux-persist
+  ```
+
 - Install [TailwindCss](https://tailwindcss.com/docs/installation/using-vite)
 
   Install tailwindcss and @tailwindcss/vite via npm.

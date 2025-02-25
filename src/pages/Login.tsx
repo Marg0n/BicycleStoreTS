@@ -5,11 +5,15 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
   // useLogin mutation hook
-  const [login, { data, error, isLoading }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
+
+  // navigation
+  const navigate = useNavigate();
 
   // useAppDispatch hook
   const dispatch = useAppDispatch();
@@ -22,12 +26,21 @@ const Login = () => {
       password: values.password,
     }
     
-    const res = await login(userInfo).unwrap();
-
-    const user = verifyToken(res.token);
-
-    console.log('xD',user);
-    dispatch(setUser({ user: user, token: res.token }));
+    try {
+      const res = await login(userInfo).unwrap();
+      const user = verifyToken(res.token);
+  
+      if (user) {
+        dispatch(setUser({ user: user, token: res.token }));
+        navigate("/");
+      } else {
+        console.error('Failed to verify token');
+        return <Navigate to="/login" replace={true}/>;
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+      return <Navigate to="/login" replace={true}/>;
+    }
   };
 
   return (

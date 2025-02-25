@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
 type TAuthState = {
     user: null | object,
-    token: null | object,
+    token: null | object | string,
 }
 
 const initialState : TAuthState = {
@@ -14,10 +15,10 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        setUser: (state, action) => {
+        setUser: (state, action:PayloadAction<TAuthState>) => {
             const {user, token} = action.payload;
             state.user = user;
-            state.user = token;
+            state.token = token;
         },
         logout: (state) => {
             state.user = null
@@ -29,3 +30,7 @@ const authSlice = createSlice({
 export const { setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;
+
+// exporting for using token and user from anywhere
+export const useCurrentToken = (state: RootState) => state.auth.token;
+export const useCurrentUser = (state: RootState) => state.auth.user;
