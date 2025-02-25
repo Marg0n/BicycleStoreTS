@@ -2,20 +2,32 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useAppDispatch } from "../redux/hooks";
+import { setUser } from "../redux/features/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
 
 const Login = () => {
+
+  // useLogin mutation hook
   const [login, { data, error, isLoading }] = useLoginMutation();
 
-  console.log("error", error);
-  console.log("data", data);
+  // useAppDispatch hook
+  const dispatch = useAppDispatch();
 
   // onFinish function for submitting the form
-  const onFinish = (values: { email: string; password: string }) => {
+  const onFinish = async (values: { email: string; password: string }) => {
     console.log("Received values of form: ", values);
-    login({
+    const userInfo = {
       email: values.email,
       password: values.password,
-    });
+    }
+    
+    const res = await login(userInfo).unwrap();
+
+    const user = verifyToken(res.token);
+
+    console.log('xD',user);
+    dispatch(setUser({ user: user, token: res.token }));
   };
 
   return (

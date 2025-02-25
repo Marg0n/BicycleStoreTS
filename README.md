@@ -152,6 +152,12 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm install react-icons
   ```
 
+- Install [jwt-decode](https://www.npmjs.com/package/jwt-decode) for decoding the JWT token
+
+  ```bash
+  npm i jwt-decode
+  ```
+
 - Install [TailwindCss](https://tailwindcss.com/docs/installation/using-vite)
 
   Install tailwindcss and @tailwindcss/vite via npm.
