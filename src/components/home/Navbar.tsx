@@ -11,6 +11,10 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdDashboardCustomize, MdKeyboardArrowDown } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import logo from "../../assets/images/logo/logo.png";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const ResponsiveNavbar = () => {
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
@@ -18,8 +22,35 @@ const ResponsiveNavbar = () => {
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
+  // navigation
+  const navigate = useNavigate();
+
+  // dispatch
+  const dispatch = useAppDispatch();
+
+  // check if user is logged in
+  const user = useAppSelector(useCurrentUser);
+  //console.log(user)
+
+  // login
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  // logout
+  const handleLogout = () => {
+    const toastId = toast.loading("Loading...");
+
+    try {
+      dispatch(logout());
+      toast.success("Logged out successfully", { id: toastId, duration: 2000 });
+    } catch (error) {
+      toast.error(`Something went wrong: ${error}`, { id: toastId });
+    }
+  };
+
   return (
-    <nav className="flex items-center justify-between w-full relative h-auto shadow-md p-4 bg-base-100">
+    <nav className="flex items-center justify-between w-full relative h-auto shadow-md p-4 bg-base-100 border-purple-600 shadow-purple-600 rounded-4xl">
       {/* logo */}
       <img src={logo} alt="logo" className="w-[60px] " />
 
@@ -134,57 +165,72 @@ const ResponsiveNavbar = () => {
 
       {/* user account */}
       <div className="flex items-center gap-[15px]">
-        <div
-          className="flex items-center gap-[10px] cursor-pointer relative"
-          onClick={() => setAccountMenuOpen(!accountMenuOpen)}
-        >
-          <div className="relative">
-            <img
-              src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?t=st=1724605498~exp=1724609098~hmac=7f6fc106bae2c17b0c93af1b2e5483d9d8368f3e51284aaec7c7d50590d2bae5&w=740"
-              alt="avatar"
-              className="w-[35px] h-[35px] rounded-full object-cover"
-            />
-            <div className="w-[10px] h-[10px] rounded-full bg-green-500 absolute bottom-[0px] right-0 border-2 border-white"></div>
-          </div>
-
-          <h1 className="text-[1rem] font-[400] text-gray-600 sm:block hidden">
-            Dhon Deo
-          </h1>
-
-          <div
-            className={`${
-              accountMenuOpen
-                ? "translate-y-0 opacity-100 z-[1]"
-                : "translate-y-[10px] opacity-0 z-[-1]"
-            } bg-white w-max rounded-md absolute top-[45px] right-0 p-[10px] flex flex-col transition-all duration-300 gap-[5px]`}
+        {!user ? (
+          <button
+            onClick={handleLogin}
+            className="relative px-6 py-3 font-bold text-white rounded-lg group"
           >
-            <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
-              <FiUser />
-              View Profile
-            </p>
-            <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
-              <IoSettingsOutline />
-              Settings
-            </p>
-            <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
-              <FiUser />
-              View Profile
-            </p>
-
-            <div className="mt-3 border-t border-gray-200 pt-[5px]">
-              <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-red-500 hover:bg-red-50">
-                <TbLogout2 />
-                Logout
-              </p>
+            <span className="absolute inset-0 rounded-full w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-blue-600 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+            <span className="absolute inset-0 rounded-full w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-purple-600 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
+            <span className="relative">Login</span>
+          </button>
+        ) : (
+          <div
+            className="flex items-center gap-[10px] cursor-pointer relative"
+            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+          >
+            <div className="relative">
+              <img
+                src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?t=st=1724605498~exp=1724609098~hmac=7f6fc106bae2c17b0c93af1b2e5483d9d8368f3e51284aaec7c7d50590d2bae5&w=740"
+                alt="avatar"
+                className="w-[35px] h-[35px] rounded-full object-cover"
+              />
+              <div className="w-[10px] h-[10px] rounded-full bg-green-500 absolute bottom-[0px] right-0 border-2 border-white"></div>
             </div>
-          </div>
 
-          <IoIosArrowUp
-            className={`${
-              accountMenuOpen ? "rotate-0" : "rotate-[180deg]"
-            } transition-all duration-300 text-gray-600 sm:block hidden`}
-          />
-        </div>
+            <h1 className="text-[1rem] font-[400] text-gray-600 sm:block hidden">
+              Dhon Deo
+            </h1>
+
+            <div
+              className={`${
+                accountMenuOpen
+                  ? "translate-y-0 opacity-100 z-[1]"
+                  : "translate-y-[10px] opacity-0 z-[-1]"
+              } bg-white w-max rounded-md absolute top-[45px] right-0 p-[10px] flex flex-col transition-all duration-300 gap-[5px] shadow-lg z-50`}
+            >
+              <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
+                <FiUser />
+                View Profile
+              </p>
+              <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
+                <IoSettingsOutline />
+                Settings
+              </p>
+              <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
+                <FiUser />
+                View Profile
+              </p>
+
+              {/* logout */}
+              <div className="mt-3 border-t border-gray-200 pt-[5px]">
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-red-500 hover:bg-red-50"
+                >
+                  <TbLogout2 />
+                  Logout
+                </button>
+              </div>
+            </div>
+
+            <IoIosArrowUp
+              className={`${
+                accountMenuOpen ? "rotate-0" : "rotate-[180deg]"
+              } transition-all duration-300 text-gray-600 sm:block hidden`}
+            />
+          </div>
+        )}
 
         <CiMenuFries
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}

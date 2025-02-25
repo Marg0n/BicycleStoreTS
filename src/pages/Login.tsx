@@ -3,12 +3,12 @@ import { Button, Form, Input } from "antd";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
-import { setUser } from "../redux/features/auth/authSlice";
+import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Login = () => {
-
   // useLogin mutation hook
   const [login, { isLoading }] = useLoginMutation();
 
@@ -20,26 +20,37 @@ const Login = () => {
 
   // onFinish function for submitting the form
   const onFinish = async (values: { email: string; password: string }) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+
+    const toastId = toast.loading("Logging in...");
+
     const userInfo = {
       email: values.email,
       password: values.password,
-    }
-    
+    };
+
     try {
       const res = await login(userInfo).unwrap();
       const user = verifyToken(res.token);
-  
+
       if (user) {
-        dispatch(setUser({ user: user, token: res.token }));
+        dispatch(setUser({ 
+          user: user as TUser, 
+          token: res.token
+        }));
+        toast.success("Logged in successfully", {
+          id: toastId,
+          duration: 2000,
+        });
+
         navigate("/");
       } else {
-        console.error('Failed to verify token');
-        return <Navigate to="/login" replace={true}/>;
+        toast.error("Failed to verify", { id: toastId });
+        return <Navigate to="/login" replace={true} />;
       }
     } catch (error) {
-      console.error('Login failed:', error);
-      return <Navigate to="/login" replace={true}/>;
+      toast.error(`Something went wrong: ${error}`, { id: toastId });
+      return <Navigate to="/login" replace={true} />;
     }
   };
 

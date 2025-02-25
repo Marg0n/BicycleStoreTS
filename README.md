@@ -164,6 +164,12 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm i redux-persist
   ```
 
+- Install [sonner](https://sonner.emilkowal.ski/) for toaster rendering
+
+  ```bash
+  npm install sonner
+  ```
+
 - Install [TailwindCss](https://tailwindcss.com/docs/installation/using-vite)
 
   Install tailwindcss and @tailwindcss/vite via npm.
