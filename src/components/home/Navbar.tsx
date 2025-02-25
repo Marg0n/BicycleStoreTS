@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { GrUserAdmin } from "react-icons/gr";
 
 const ResponsiveNavbar = () => {
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
@@ -163,7 +164,7 @@ const ResponsiveNavbar = () => {
         </li>
       </ul>
 
-      {/* user account */}
+      {/* user account login */}
       <div className="flex items-center gap-[15px]">
         {!user ? (
           <button
@@ -181,7 +182,7 @@ const ResponsiveNavbar = () => {
           >
             <div className="relative">
               <img
-                src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?t=st=1724605498~exp=1724609098~hmac=7f6fc106bae2c17b0c93af1b2e5483d9d8368f3e51284aaec7c7d50590d2bae5&w=740"
+                src="https://i.ibb.co/qWzCvWm/avatar.gif"
                 alt="avatar"
                 className="w-[35px] h-[35px] rounded-full object-cover"
               />
@@ -189,7 +190,7 @@ const ResponsiveNavbar = () => {
             </div>
 
             <h1 className="text-[1rem] font-[400] text-gray-600 sm:block hidden">
-              Dhon Deo
+              {user.email}
             </h1>
 
             <div
@@ -197,8 +198,16 @@ const ResponsiveNavbar = () => {
                 accountMenuOpen
                   ? "translate-y-0 opacity-100 z-[1]"
                   : "translate-y-[10px] opacity-0 z-[-1]"
-              } bg-white w-max rounded-md absolute top-[45px] right-0 p-[10px] flex flex-col transition-all duration-300 gap-[5px] shadow-lg z-50`}
+              } bg-white w-max rounded-md absolute top-[45px] right-0 p-[10px] flex flex-col transition-all duration-300 gap-[5px] shadow-lg z-50 shadow-purple-600`}
             >
+              <span className="px-4 py-1.5 bg-[#e4d4f4] text-[#7828c8] rounded-full text-[0.9rem] font-[500] flex items-center gap-2">
+                {user.role === "admin" ? (
+                  <GrUserAdmin className="text-[1.3rem] text-[#7828c8]" />
+                ) : (
+                  <FiUser className="text-[1.3rem] text-[#7828c8]" />
+                )}
+                {user.role === "admin" ? "Admin" : "Customer"}
+              </span>
               <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] text-gray-600 hover:bg-gray-50">
                 <FiUser />
                 View Profile
