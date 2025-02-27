@@ -1,4 +1,4 @@
-import React from "react";
+
 
 // react icons
 import { FaPlay } from "react-icons/fa";
