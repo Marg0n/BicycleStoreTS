@@ -170,6 +170,24 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm install sonner
   ```
 
+- Install [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/installation) 
+
+  ```bash
+  npm i @tanstack/react-query
+  ```
+
+  It is recommended to also use our `ESLint Plugin Query` to help you catch bugs and inconsistencies while you code. You can install it via:
+
+  ```bash
+  npm i -D @tanstack/eslint-plugin-query
+  ```
+
+- Install [Axios](https://www.npmjs.com/package/axios) 
+
+  ```bash
+  npm i axios
+  ```
+
 - Install [TailwindCss](https://tailwindcss.com/docs/installation/using-vite)
 
   Install tailwindcss and @tailwindcss/vite via npm.
