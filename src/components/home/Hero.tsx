@@ -1,4 +1,5 @@
-
+// import image
+import cycle from "../../assets/images/img/bicycle.jpg";
 
 // react icons
 import { FaPlay } from "react-icons/fa";
@@ -6,11 +7,11 @@ import { FaPlay } from "react-icons/fa";
 const Hero = () => {
   return (
     <div
-      className="w-full h-full rounded-4xl shadow-purple-600 shadow-2xl"
-      //  style={{backgroundImage: "url("https://i.ibb.co/x1rvpZs/0f-Y6ep3cd1c.png")"}}
+      className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl"
+      //  style={{backgroundImage: 'url("https://i.ibb.co/x1rvpZs/0f-Y6ep3cd1c.png")'}}
     >
       {/* header */}
-      <header className="flex lg:flex-row flex-col gap-[50px] lg:gap-0 items-center lg:mt-3">
+      <header className="flex h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center lg:mt-3">
         <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%]">
           <h1 className="text-[40px] lg:text-[60px] leading-[45px] lg:leading-[65px] font-[500]">
             Get your dream Bicycle within your home!
@@ -32,11 +33,12 @@ const Hero = () => {
         </div>
 
         {/* image */}
-        <div className="w-full lg:w-[50%]">
+        <div className="w-full lg:w-[50%] object-cover p-10">
           <img
-            src="https://i.ibb.co/kGnQZJ5/free-iphone-12-mini-mockup-scene-1-removebg-preview.png"
+            src={cycle}
+            // src="https://i.ibb.co/kGnQZJ5/free-iphone-12-mini-mockup-scene-1-removebg-preview.png"
             alt="image"
-            className="w-full"
+            className="w-full h-full rounded-4xl"
           />
         </div>
       </header>

@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../pages/home/Home";
 import Login from "../pages/Login";
 import Page404 from "../pages/shared/Page404";
+import HomeLayout from "../layout/home/HomeLayout";
 
 const routes = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <HomeLayout />,
         // element: <ProtectedRoute><Home /></ProtectedRoute>,
       },
     ],
