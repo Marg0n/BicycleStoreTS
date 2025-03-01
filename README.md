@@ -188,6 +188,12 @@ A Bicycle Store application featuring user-friendly functionalities, secure auth
   npm i axios
   ```
 
+- Install [@lottiefiles/dotlottie-react](https://www.npmjs.com/package/@lottiefiles/dotlottie-react) for rendering lottie json file
+
+  ```bash
+  npm i @lottiefiles/dotlottie-react
+  ```
+
 - Install [TailwindCss](https://tailwindcss.com/docs/installation/using-vite)
 
   Install tailwindcss and @tailwindcss/vite via npm.
