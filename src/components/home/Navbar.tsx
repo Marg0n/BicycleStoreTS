@@ -14,7 +14,7 @@ import logo from "../../assets/images/logo/logo.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 
 const ResponsiveNavbar = () => {
@@ -58,7 +58,7 @@ const ResponsiveNavbar = () => {
       {/* nav links */}
       <ul className="items-center gap-[20px] text-[1rem] text-[#424242] md:flex hidden">
         <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] capitalize">
-          home
+          <NavLink to='/'>home</NavLink>
         </li>
 
         {/* about us mega menu */}
