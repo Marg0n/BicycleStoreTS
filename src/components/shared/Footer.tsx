@@ -6,13 +6,9 @@ import logo from "../../assets/images/logo/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-white shadow-md rounded-2xl w-full p-3 md:p-4 relative shadow-purple-600 ">
+    <footer className="bg-white shadow-md rounded-t-2xl w-full p-3 md:p-4 relative shadow-purple-600 2xl:h-[30vh]">
       <div className="w-full flex items-center justify-center pt-[30px] flex-col gap-[20px] pb-[130px]">
-        <img
-          src={logo}
-          alt="logo"
-          className="w-[5rem]"
-        />
+        <img src={logo} alt="logo" className="w-[5rem]" />
 
         <p className="text-[0.9rem] text-center sm:text-start text-gray-600">
           High level experience in web design and development knowledge,
@@ -50,12 +46,12 @@ const Footer = () => {
       <img
         src="https://i.ibb.co/zNk7XT4/Rectangle-97.png"
         alt="background/image"
-        className="absolute bottom-[20px] sm:bottom-0 left-0 right-0 z-10 rounded-b-xl"
+        className="absolute bottom-[20px] sm:bottom-0 left-0 right-0 z-10 rounded-t-xl w-full"
       />
       <img
         src="https://i.ibb.co/0mp2FwS/Rectangle-95.png"
         alt="background/image"
-        className="absolute bottom-0 left-0 right-0 z-10 rounded-b-xl"
+        className="absolute bottom-0 left-0 right-0 z-10 rounded-t-xl w-full"
       />
     </footer>
   );
