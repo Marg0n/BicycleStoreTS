@@ -1,5 +1,6 @@
 import Hero from "../../components/home/Hero";
 import Navbar from "../../components/home/Navbar";
+import FeaturedBicycles from "./FeaturedBicycles";
 
 const Home = () => {
   return (
@@ -7,6 +8,7 @@ const Home = () => {
       <Navbar />
       <div className="min-h-[28vh] my-4 flex flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-16">
       <Hero/>
+      <FeaturedBicycles/>
       </div>
     </div>
   );
