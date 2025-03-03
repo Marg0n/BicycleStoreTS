@@ -3,7 +3,7 @@ import Home from '../../pages/home/Home';
 import Footer from '../../components/shared/Footer';
 const HomeLayout = () => {
     return (
-        <div className='w-full    '>
+        <div className='w-full space-y-4'>
             <Home/>
             <Footer/>
         </div>

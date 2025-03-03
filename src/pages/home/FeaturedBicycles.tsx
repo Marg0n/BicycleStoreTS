@@ -1,25 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
-import ItemsCard from "../../components/shared/ItemsCard";
+import ItemsCard, { ItemData } from "../../components/shared/ItemsCard";
 import Loading from "../../components/shared/Loading";
 import { toast } from "sonner";
-import axios from "axios";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const FeaturedBicycles = () => {
+
+  const axiosCommon = useAxiosCommon();
 
   // fetching the featured Bicycles
   const { isPending, data } = useQuery({
     queryKey: ["featuredBicycles"],
     queryFn: async () => {
       try {
-        // const response = await axios(`${process.env.SERVER}/api/products`);
-        const response = await axios(`http://localhost:5000/api/products`);
+        // const response = await axios(`${import.meta.env.VITE_SERVER}/api/products`);
+        const response = await axiosCommon(`/api/products`);
+        // console.log("response ==>",response);
+
         if (response.status !== 200) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.data;
-      } catch (error: any) {
+
+        // return the featured Bicycles
+        return response.data.data;
+      } 
+      catch (error: any) {
         console.error("Error fetching featured bicycles:", error);
+
+        // toast
         toast.error(error.message);
         throw error;
       }
@@ -28,12 +37,12 @@ const FeaturedBicycles = () => {
 
   if (isPending) return <Loading />;
   console.log(isPending);
-  console.log(data.data)
+  console.log("product data ==>",data)
 
   //   if (error) return 'An error has occurred: ' + error.message + console.log(error, data)
 
   return (
-    <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl p-4">
+    <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl p-16">
       {/* header */}
       <header className="flex h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center lg:mt-3">
         <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%]">
@@ -59,7 +68,9 @@ const FeaturedBicycles = () => {
 
       {/* grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[30px] px-8 mt-10">
-        <ItemsCard data={data.data} isPending={isPending}/>
+        {
+          data?.map((d : ItemData) => <ItemsCard key={d._id} data={d} isPending={isPending}/>)          
+        }
       </div>
     </div>
   );

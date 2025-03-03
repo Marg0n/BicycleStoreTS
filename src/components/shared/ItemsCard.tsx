@@ -3,7 +3,7 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Avatar, Card, Flex, Switch } from "antd";
+import { Avatar, Card, Flex, Skeleton, Switch } from "antd";
 import { useState } from "react";
 
 const actions: React.ReactNode[] = [
@@ -12,9 +12,27 @@ const actions: React.ReactNode[] = [
   <EllipsisOutlined key="ellipsis" />,
 ];
 
-const ItemsCard = ({ data }: { data: React.ReactNode }, isPending: boolean) => {
+export interface ItemData {
+  brand: string;
+  description: string;
+  inStock: boolean;
+  name: string;
+  quantity: number;
+  type: string;
+  updatedAt: string;
+  _id: string;
+  price: number;
+  createdAt: string;
+}
+
+interface ItemsCardProps {
+  data: ItemData;
+  isPending: boolean;
+}
+
+const ItemsCard: React.FC<ItemsCardProps> = ({ data, isPending }) => {
   // loading state
-  const [loading, setLoading] = useState<boolean>(isPending);
+  const [loading, _setLoading] = useState<boolean>(isPending);
 
   // destructure items
   const {
@@ -32,38 +50,56 @@ const ItemsCard = ({ data }: { data: React.ReactNode }, isPending: boolean) => {
 
   return (
     <>
-      <Flex gap="middle" align="start" vertical>
+      <Flex 
+      gap="middle" align="start" vertical 
+      className="hover:shadow-blue-600 shadow-2xl hover:scale-105 rounded-2xl"
+      >
         {/* <Switch
           checked={!loading}
           onChange={(checked) => setLoading(!checked)}
         /> */}
-        {loading && (
-          <Card
-            loading={loading}
-            actions={actions}
-            style={{ minWidth: 300 }}
-            //   cover={
-            //     <img
-            //       alt="example"
-            //       src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            //     />
-            //   }
-          >
+
+        {loading ? (
+          <div style={{ padding: 24 }}>
+            <Skeleton active avatar paragraph={{ rows: 4 }} />
+          </div>
+        ) : (
+          <Card loading={loading} actions={actions} style={{ minWidth: 300 }}>
             <img
               alt="Bicycle"
               src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
               className="mb-6"
             />
             <Card.Meta
+              className="h-68"
               avatar={
                 <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
               }
-              title="Card title"
+              title={name}
               description={
-                <>
-                  <p>{name}</p>
-                  <p>This is the description</p>
-                </>
+                <div className="space-y-2">
+                  <p className="mb-2 font-semibold">{description}</p>
+                  <p className="flex justify-between">
+                  <span className="font-medium">Brand:</span> 
+                  <span className="font-serif">{brand}</span>
+                  </p>
+                  <p className="flex justify-between">
+                  <span className="font-medium">Type:</span> 
+                  <span className="font-serif">{type}</span>
+                  </p>
+                  <p className="flex justify-between">
+                  <span className="font-medium">Price:</span> 
+                  <span className="font-serif">${price}</span>
+                  </p>
+                  <p className="flex justify-between">
+                  <span className="font-medium">Quantity:</span> 
+                  <span className="font-serif">{quantity}</span>
+                  </p>
+                  <p className="flex justify-between">
+                  <span className="font-medium">In Stock:</span> 
+                  <span className="font-serif">{inStock ? "Yes" : "No"}</span>
+                  </p>
+                </div>
               }
             />
           </Card>
