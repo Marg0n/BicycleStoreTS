@@ -45,7 +45,7 @@ const FeaturedBicycles = () => {
     <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl p-16">
       {/* header */}
       <header className="flex h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center lg:mt-3">
-        <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%] space-y-6">
+        <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%] space-y-6 flex-col justify-center items-center bg-red-300">
           <h1 className="text-[40px] lg:text-[60px] leading-[45px] lg:leading-[65px] font-[500] w-full">
             Featured Bicycles
           </h1>
@@ -67,7 +67,7 @@ const FeaturedBicycles = () => {
       </header>
 
       {/* grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[30px] px-8 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-[30px] px-8 mt-10">
         {
           data?.map((d : ItemData) => <ItemsCard key={d._id} data={d} isPending={isPending}/>)          
         }
