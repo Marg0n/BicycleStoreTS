@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="p-8 border border-gray-200 rounded shadow-md">
+      <div className="p-8 border rounded shadow-md border-purple-600 shadow-purple-600">
         <Form
           name="login"
           initialValues={{ remember: true }}

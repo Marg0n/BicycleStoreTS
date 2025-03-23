@@ -45,24 +45,24 @@ const FeaturedBicycles = () => {
     <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl p-16">
       {/* header */}
       <header className="flex h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center lg:mt-3">
-        <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%]">
-          <h1 className="text-[40px] lg:text-[60px] leading-[45px] lg:leading-[65px] font-[500]">
+        <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%] space-y-6">
+          <h1 className="text-[40px] lg:text-[60px] leading-[45px] lg:leading-[65px] font-[500] w-full">
             Featured Bicycles
           </h1>
-          <p className="text-[16px] mt-2">
+          <p className="text-[16px] mt-2 w-full text-center">
             Check out our new and exciting bicycles.
           </p>
           <button className="py-2 px-6 min-w-fit bg-blue-400 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
             View All Bicycles
           </button>
-          <div className="flex items-center gap-[20px] mt-6">
+          {/* <div className="flex items-center gap-[20px] mt-6">
             <button className="py-2 px-6 min-w-fit bg-purple-200 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
               Explore by Color
             </button>
             <button className="py-2 px-6 min-w-fit bg-purple-200 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
               Explore by Price
             </button>
-          </div>
+          </div> */}
         </div>
       </header>
 
