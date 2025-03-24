@@ -21,11 +21,19 @@ const Hero = () => {
           </p>
 
           <div className="flex items-center flex-wrap gap-[20px] mt-6">
-            <button className="py-2 px-6 min-w-fit bg-blue-400 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
+            {/* <button className="py-2 px-6 min-w-fit bg-blue-400 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
               Get Started
+            </button> */}
+            <button
+              // onClick={handleLogin}
+              className="relative px-6 py-3 font-bold text-white rounded-lg group"
+            >
+              <span className="absolute inset-0 rounded-full w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-blue-600 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span className="absolute inset-0 rounded-full w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-purple-600 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
+              <span className="relative">Get Started</span>
             </button>
 
-            <button className="bg-purple-200 min-w-fit rounded-full py-1.5 pl-2 pr-3 flex items-center gap-[10px] ">
+            <button className="min-w-fit rounded-full py-1.5 pl-2 pr-3 flex items-center gap-[10px] bg-blue-400 text-white hover:bg-transparent hover:border-purple-600 hover:text-black transition-all duration-200 border">
               <FaPlay className="text-white bg-purple-600 rounded-full py-2 text-[2rem]" />
               Check for more
             </button>

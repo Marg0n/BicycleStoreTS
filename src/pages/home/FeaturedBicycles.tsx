@@ -37,7 +37,7 @@ const FeaturedBicycles = () => {
 
   if (isPending) return <Loading />;
   console.log(isPending);
-  console.log("product data ==>",data)
+  console.log("product data ==>", data);
 
   //   if (error) return 'An error has occurred: ' + error.message + console.log(error, data)
 
@@ -45,16 +45,26 @@ const FeaturedBicycles = () => {
     <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl p-16">
       {/* header */}
       <header className="flex h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center lg:mt-3">
-        <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%] space-y-6 flex-col justify-center items-center bg-red-300">
+        <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%] space-y-6">
           <h1 className="text-[40px] lg:text-[60px] leading-[45px] lg:leading-[65px] font-[500] w-full">
             Featured Bicycles
           </h1>
           <p className="text-[16px] mt-2 w-full text-center">
             Check out our new and exciting bicycles.
           </p>
-          <button className="py-2 px-6 min-w-fit bg-blue-400 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
-            View All Bicycles
-          </button>
+          <div className="text-center">
+            {/* <button className="py-2 px-6 min-w-fit bg-blue-400 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
+              View All Bicycles
+            </button> */}
+            <button
+              // onClick={handleLogin}
+              className="relative px-6 py-3 font-bold text-white rounded-lg group"
+            >
+              <span className="absolute inset-0 rounded-full w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-blue-600 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span className="absolute inset-0 rounded-full w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-purple-600 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
+              <span className="relative">View All Bicycles</span>
+            </button>
+          </div>
           {/* <div className="flex items-center gap-[20px] mt-6">
             <button className="py-2 px-6 min-w-fit bg-purple-200 text-white rounded-full hover:bg-transparent hover:border-black hover:text-black transition-all duration-200 border">
               Explore by Color
@@ -68,9 +78,9 @@ const FeaturedBicycles = () => {
 
       {/* grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-[30px] px-8 mt-10">
-        {
-          data?.map((d : ItemData) => <ItemsCard key={d._id} data={d} isPending={isPending}/>)          
-        }
+        {data?.map((d: ItemData) => (
+          <ItemsCard key={d._id} data={d} isPending={isPending} />
+        ))}
       </div>
     </div>
   );
