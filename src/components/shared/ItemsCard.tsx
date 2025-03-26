@@ -1,9 +1,12 @@
 import {
   EditOutlined,
   EllipsisOutlined,
+  FrownOutlined,
+  MehOutlined,
   SettingOutlined,
+  SmileOutlined,
 } from "@ant-design/icons";
-import { Avatar, Card, Flex, Skeleton, Switch } from "antd";
+import { Avatar, Card, Flex, Rate, Skeleton, Switch } from "antd";
 import { useState } from "react";
 
 const actions: React.ReactNode[] = [
@@ -18,7 +21,9 @@ export interface ItemData {
   inStock: boolean;
   name: string;
   quantity: number;
+  image: string;
   type: string;
+  rating: number;
   updatedAt: string;
   _id: string;
   price: number;
@@ -41,12 +46,23 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, isPending }) => {
     inStock,
     name,
     quantity,
+    image,
     type,
+    rating,
     updatedAt,
     _id,
     price,
     createdAt,
   } = data;
+
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+  const customIcons: Record<number, React.ReactNode> = {
+    1: "😢",
+    2: <FrownOutlined />,
+    3: <MehOutlined />,
+    4: <SmileOutlined />,
+    5: "😁",
+  };
 
   return (
     <>
@@ -67,11 +83,16 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, isPending }) => {
           </div>
         ) : (
           <Card loading={loading} actions={actions} style={{ minWidth: 200 }}>
-            <img
-              alt="Bicycle"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              className="mb-6 w-full"
-            />
+            {!image ? (
+              <img
+                alt="Bicycle"
+                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                className="mb-6 w-full"
+              />
+            ) : (
+              <img alt="Bicycle" src={image} className="mb-6 w-full h-52" />
+            )}
+
             <Card.Meta
               className="max-h-68"
               // avatar={
@@ -100,6 +121,17 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, isPending }) => {
                   <p className="flex justify-between">
                     <span className="font-medium">In Stock:</span>
                     <span className="font-serif">{inStock ? "Yes" : "No"}</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span className="font-medium">Rating:</span>
+                    {/* <span className="font-serif">{rating}⭐</span> */}
+                    <Rate
+                      tooltips={desc}
+                      defaultValue={rating}
+                      character={({ index = 0 }) => customIcons[index + 1]}
+                      disabled 
+                    />
+                    {/* {rating ? <span>{desc[rating - 1]}</span> : null} */}
                   </p>
                 </div>
               }
