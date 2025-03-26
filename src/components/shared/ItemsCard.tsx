@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Card, Flex, Rate, Skeleton, Switch } from "antd";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const actions: React.ReactNode[] = [
   <EditOutlined key="edit" />,
@@ -65,7 +66,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, isPending }) => {
   };
 
   return (
-    <>
+    <Link to={''}>
       <Flex
         gap="middle"
         align="start"
@@ -139,7 +140,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, isPending }) => {
           </Card>
         )}
       </Flex>
-    </>
+    </Link>
   );
 };
 

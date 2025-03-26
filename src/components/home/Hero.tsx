@@ -4,13 +4,15 @@ import cycle from "../../assets/images/img/bicycle.jpg";
 // react icons
 import { FaPlay } from "react-icons/fa";
 import CustomButton from "../shared/CustomButton";
-import { toast } from "sonner";
 
 const Hero = () => {
 
   // handle click
   const handleClick = () =>{
-    toast.success("yey! it is clicked!");
+    const section = document.getElementById("featured");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   return (
