@@ -9,6 +9,7 @@ import {
 import { Avatar, Card, Flex, Rate, Skeleton, Switch } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { JSX } from "react/jsx-runtime";
 
 const actions: React.ReactNode[] = [
   <EditOutlined key="edit" />,
@@ -17,6 +18,7 @@ const actions: React.ReactNode[] = [
 ];
 
 export interface ItemData {
+  map?(arg0: (d: ItemData) => JSX.Element): import("react").ReactNode;
   brand: string;
   description: string;
   inStock: boolean;
@@ -31,7 +33,7 @@ export interface ItemData {
   createdAt: string;
 }
 
-interface ItemsCardProps {
+export interface ItemsCardProps {
   data: ItemData;
   isPending: boolean;
 }
