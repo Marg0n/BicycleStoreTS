@@ -5,15 +5,6 @@ import { Carousel } from "antd";
 import cycle from "../../assets/images/img/bicycle.jpg";
 import { ItemData, ItemsCardProps } from "./ItemsCard";
 
-const contentStyle: React.CSSProperties = {
-  height: "100%",
-  color: "#fff",
-  //   lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-  padding: "0px",
-  backgroundImage: ` url(${cycle})`,
-};
 
 const Slider: React.FC<ItemsCardProps> = ({ data, isPending }) => {
   console.log(isPending);
@@ -23,18 +14,18 @@ const Slider: React.FC<ItemsCardProps> = ({ data, isPending }) => {
     <Carousel
       autoplay={{ dotDuration: true }}
       autoplaySpeed={2000}
-      className="min-w-full min-h-[55vh]"
-      // style={contentStyle}
+      arrows={true}
+      fade={true}
+      className="min-w-full min-h-[55vh] bg-gradient-to-r from-blue-400 to-purple-600 rounded-4xl"
     >
-      {data?.map((d: ItemData) => (
+      {data && data.map && data?.map((d: ItemData) => (
         <div
           key={d?._id}
-          // className="bg-red-700  flex justify-center items-center h-full lg:flex-row flex-col gap-[50px] lg:gap-0 lg:mt-3"
-          className="flex flex-row"
+          className="rounded-4xl"
         >
           {/* description */}          
-          <header className="flex min-h-[55vh] h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center bg-green-400 rounded-4xl">
-            <div className="px-8 mt-8 lg:mt-0 w-full lg:w-[50%]">
+          <header className="flex min-h-[55vh] h-full lg:flex-row flex-col gap-[50px] lg:gap-0 justify-center items-center rounded-4xl">
+            <div className="px-8 mt-8 sm:h-1/2  lg:mt-0 w-full lg:w-[50%] text-center">
               <h1 className="text-[40px] lg:text-[60px] leading-[45px] lg:leading-[65px] font-[500]">
                 {d?.name}
               </h1>
@@ -42,12 +33,11 @@ const Slider: React.FC<ItemsCardProps> = ({ data, isPending }) => {
             </div>
 
             {/* image */}
-            <div className="w-full lg:w-[50%] object-cover p-10 flex justify-between items-center rounded-4xl ">
+            <div className="w-full lg:w-[50%] p-10 flex justify-center items-center rounded-4xl">
               <img
                 src={d?.image || cycle}
-                // src="https://i.ibb.co/kGnQZJ5/free-iphone-12-mini-mockup-scene-1-removebg-preview.png"
                 alt="image"
-                className="w-96 h-80 rounded-4xl"
+                className="w-48 h-48 md:w-80 md:h-80 lg:w-96 lg:h-96 object-fill rounded-full"
               />
             </div>
           </header>

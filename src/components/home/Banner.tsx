@@ -39,7 +39,7 @@ const Banner = () => {
   if (isPending) return <Loading />;
 
   return (
-    <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl bg-amber-200">
+    <div className="w-full min-h-[55vh] rounded-4xl shadow-purple-600 shadow-2xl">
       <Slider data={data} isPending={isPending}/>
     </div>
   );
